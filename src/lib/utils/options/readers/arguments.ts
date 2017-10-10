@@ -8,7 +8,7 @@ import { ParameterType } from '../declaration';
 @Component({name: 'options:arguments'})
 export class ArgumentsReader extends OptionsComponent {
     initialize() {
-        this.listenTo(this.owner, DiscoverEvent.DISCOVER, this.onDiscover, -200);
+        this.listenTo(this.owner, DiscoverEvent.DISCOVER, this.onDiscover, -50);
     }
 
     onDiscover(event: DiscoverEvent) {

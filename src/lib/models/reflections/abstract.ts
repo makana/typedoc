@@ -76,7 +76,11 @@ export enum ReflectionFlag {
     Optional = 128,
     DefaultValue = 256,
     Rest = 512,
-    ConstructorProperty = 1024
+    ConstructorProperty = 1024,
+    Abstract = 2048,
+    Const = 4096,
+    Let = 8192,
+    Readonly = 16384
 }
 
 const relevantFlags: ReflectionFlag[] = [
@@ -86,7 +90,11 @@ const relevantFlags: ReflectionFlag[] = [
     ReflectionFlag.ExportAssignment,
     ReflectionFlag.Optional,
     ReflectionFlag.DefaultValue,
-    ReflectionFlag.Rest
+    ReflectionFlag.Rest,
+    ReflectionFlag.Abstract,
+    ReflectionFlag.Let,
+    ReflectionFlag.Const,
+    ReflectionFlag.Readonly
 ];
 
 export interface ReflectionFlags extends Array<string> {
@@ -140,6 +148,17 @@ export interface ReflectionFlags extends Array<string> {
     hasExportAssignment?: boolean;
 
     isConstructorProperty?: boolean;
+
+    isAbstract?: boolean;
+
+    isConst?: boolean;
+
+    isLet?: boolean;
+
+    /**
+     * Is this a readonly property?
+     */
+    isReadonly?: boolean;
 }
 
 export interface DefaultValueContainer extends Reflection {
@@ -404,6 +423,24 @@ export abstract class Reflection {
                 break;
             case ReflectionFlag.ConstructorProperty:
                 this.flags.isConstructorProperty = value;
+                break;
+            case ReflectionFlag.Abstract:
+                this.flags.isAbstract = value;
+                break;
+            case ReflectionFlag.Let:
+                this.flags.isLet = value;
+                if (value) {
+                    this.setFlag(ReflectionFlag.Const, false);
+                }
+                break;
+            case ReflectionFlag.Const:
+                this.flags.isConst = value;
+                if (value) {
+                    this.setFlag(ReflectionFlag.Let, false);
+                }
+                break;
+            case ReflectionFlag.Readonly:
+                this.flags.isReadonly = value;
                 break;
         }
     }

@@ -15,6 +15,356 @@
       "originalName": "%BASE%/class/class.ts",
       "children": [
         {
+          "id": 34,
+          "name": "TestAbstractClass",
+          "kind": 128,
+          "kindString": "Class",
+          "flags": {
+            "isExported": true,
+            "isAbstract": true
+          },
+          "children": [
+            {
+              "id": 35,
+              "name": "myAbstractProperty",
+              "kind": 1024,
+              "kindString": "Property",
+              "flags": {
+                "isExported": true,
+                "isAbstract": true
+              },
+              "sources": [
+                {
+                  "fileName": "class.ts",
+                  "line": 80,
+                  "character": 31
+                }
+              ],
+              "type": {
+                "type": "intrinsic",
+                "name": "string"
+              }
+            },
+            {
+              "id": 38,
+              "name": "myAbstractAccessor",
+              "kind": 262144,
+              "kindString": "Accessor",
+              "flags": {
+                "isExported": true,
+                "isAbstract": true
+              },
+              "getSignature": [
+                {
+                  "id": 39,
+                  "name": "__get",
+                  "kind": 524288,
+                  "kindString": "Get signature",
+                  "flags": {},
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "number"
+                  }
+                }
+              ],
+              "setSignature": [
+                {
+                  "id": 40,
+                  "name": "__set",
+                  "kind": 1048576,
+                  "kindString": "Set signature",
+                  "flags": {},
+                  "parameters": [
+                    {
+                      "id": 41,
+                      "name": "value",
+                      "kind": 32768,
+                      "kindString": "Parameter",
+                      "flags": {},
+                      "type": {
+                        "type": "intrinsic",
+                        "name": "number"
+                      }
+                    }
+                  ],
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "any"
+                  }
+                }
+              ],
+              "sources": [
+                {
+                  "fileName": "class.ts",
+                  "line": 84,
+                  "character": 35
+                },
+                {
+                  "fileName": "class.ts",
+                  "line": 85,
+                  "character": 35
+                }
+              ]
+            },
+            {
+              "id": 36,
+              "name": "myAbstractMethod",
+              "kind": 2048,
+              "kindString": "Method",
+              "flags": {
+                "isExported": true,
+                "isProtected": true,
+                "isAbstract": true
+              },
+              "signatures": [
+                {
+                  "id": 37,
+                  "name": "myAbstractMethod",
+                  "kind": 4096,
+                  "kindString": "Call signature",
+                  "flags": {},
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "void"
+                  }
+                }
+              ],
+              "sources": [
+                {
+                  "fileName": "class.ts",
+                  "line": 82,
+                  "character": 39
+                }
+              ]
+            }
+          ],
+          "groups": [
+            {
+              "title": "Properties",
+              "kind": 1024,
+              "children": [
+                35
+              ]
+            },
+            {
+              "title": "Accessors",
+              "kind": 262144,
+              "children": [
+                38
+              ]
+            },
+            {
+              "title": "Methods",
+              "kind": 2048,
+              "children": [
+                36
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "fileName": "class.ts",
+              "line": 79,
+              "character": 39
+            }
+          ],
+          "extendedBy": [
+            {
+              "type": "reference",
+              "name": "TestAbstractClassImplementation",
+              "id": 42
+            }
+          ]
+        },
+        {
+          "id": 42,
+          "name": "TestAbstractClassImplementation",
+          "kind": 128,
+          "kindString": "Class",
+          "flags": {
+            "isExported": true
+          },
+          "children": [
+            {
+              "id": 43,
+              "name": "myAbstractProperty",
+              "kind": 1024,
+              "kindString": "Property",
+              "flags": {
+                "isExported": true
+              },
+              "sources": [
+                {
+                  "fileName": "class.ts",
+                  "line": 89,
+                  "character": 22
+                }
+              ],
+              "type": {
+                "type": "intrinsic",
+                "name": "string"
+              },
+              "overwrites": {
+                "type": "reference",
+                "name": "TestAbstractClass.myAbstractProperty",
+                "id": 35
+              }
+            },
+            {
+              "id": 46,
+              "name": "myAbstractAccessor",
+              "kind": 262144,
+              "kindString": "Accessor",
+              "flags": {
+                "isExported": true
+              },
+              "getSignature": [
+                {
+                  "id": 47,
+                  "name": "__get",
+                  "kind": 524288,
+                  "kindString": "Get signature",
+                  "flags": {},
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "number"
+                  },
+                  "overwrites": {
+                    "type": "reference",
+                    "name": "TestAbstractClass.myAbstractAccessor",
+                    "id": 38
+                  }
+                }
+              ],
+              "setSignature": [
+                {
+                  "id": 48,
+                  "name": "__set",
+                  "kind": 1048576,
+                  "kindString": "Set signature",
+                  "flags": {},
+                  "parameters": [
+                    {
+                      "id": 49,
+                      "name": "value",
+                      "kind": 32768,
+                      "kindString": "Parameter",
+                      "flags": {},
+                      "type": {
+                        "type": "intrinsic",
+                        "name": "number"
+                      }
+                    }
+                  ],
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "void"
+                  },
+                  "overwrites": {
+                    "type": "reference",
+                    "name": "TestAbstractClass.myAbstractAccessor",
+                    "id": 38
+                  }
+                }
+              ],
+              "sources": [
+                {
+                  "fileName": "class.ts",
+                  "line": 93,
+                  "character": 26
+                },
+                {
+                  "fileName": "class.ts",
+                  "line": 97,
+                  "character": 26
+                }
+              ],
+              "overwrites": {
+                "type": "reference",
+                "name": "TestAbstractClass.myAbstractAccessor",
+                "id": 38
+              }
+            },
+            {
+              "id": 44,
+              "name": "myAbstractMethod",
+              "kind": 2048,
+              "kindString": "Method",
+              "flags": {
+                "isExported": true,
+                "isProtected": true
+              },
+              "signatures": [
+                {
+                  "id": 45,
+                  "name": "myAbstractMethod",
+                  "kind": 4096,
+                  "kindString": "Call signature",
+                  "flags": {},
+                  "type": {
+                    "type": "intrinsic",
+                    "name": "void"
+                  },
+                  "overwrites": {
+                    "type": "reference",
+                    "name": "TestAbstractClass.myAbstractMethod",
+                    "id": 36
+                  }
+                }
+              ],
+              "sources": [
+                {
+                  "fileName": "class.ts",
+                  "line": 91,
+                  "character": 30
+                }
+              ],
+              "overwrites": {
+                "type": "reference",
+                "name": "TestAbstractClass.myAbstractMethod",
+                "id": 36
+              }
+            }
+          ],
+          "groups": [
+            {
+              "title": "Properties",
+              "kind": 1024,
+              "children": [
+                43
+              ]
+            },
+            {
+              "title": "Accessors",
+              "kind": 262144,
+              "children": [
+                46
+              ]
+            },
+            {
+              "title": "Methods",
+              "kind": 2048,
+              "children": [
+                44
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "fileName": "class.ts",
+              "line": 88,
+              "character": 44
+            }
+          ],
+          "extendedTypes": [
+            {
+              "type": "reference",
+              "name": "TestAbstractClass",
+              "id": 34
+            }
+          ]
+        },
+        {
           "id": 2,
           "name": "TestClass",
           "kind": 128,
@@ -748,6 +1098,8 @@
           "title": "Classes",
           "kind": 128,
           "children": [
+            34,
+            42,
             2,
             16
           ]

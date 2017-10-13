@@ -63,9 +63,16 @@ export function createDeclaration(context: Context, node: ts.Node, kind: Reflect
 
     // Test whether the node is exported
     let isExported: boolean;
-    if (container.kindOf([ReflectionKind.Module, ReflectionKind.ExternalModule]) || considerInheritedExportKinds.indexOf(kind) === -1
-        || node.kind === ts.SyntaxKind.VariableDeclaration || node.kind === ts.SyntaxKind.FunctionDeclaration) {
-        isExported = false; // Don't inherit exported state in modules and namespaces
+    if (container.kindOf([ReflectionKind.Module, ReflectionKind.ExternalModule])
+        || ((considerInheritedExportKinds.indexOf(kind) === -1
+            || node.kind === ts.SyntaxKind.VariableDeclaration || node.kind === ts.SyntaxKind.FunctionDeclaration)
+        && !container.kindOf([ReflectionKind.ObjectLiteral, ReflectionKind.TypeLiteral]))) {
+        // Don't inherit exported state
+        // - in modules and namespaces
+        // - for any kind that is not member of a class/interface etc. like variables or functions
+        //   unless they are part of an object or type literal
+        //   (check the node.kind since variables or functions in merged namespaces are treated as static properties/methods)
+        isExported = false;
     } else {
         isExported = container.flags.isExported;
     }
@@ -153,6 +160,8 @@ function setupDeclaration(context: Context, reflection: DeclarationReflection, n
     reflection.setFlag(ReflectionFlag.Protected, !!(modifiers & ts.ModifierFlags.Protected));
     reflection.setFlag(ReflectionFlag.Public,    !!(modifiers & ts.ModifierFlags.Public));
     reflection.setFlag(ReflectionFlag.Optional,  !!(node['questionToken']));
+    reflection.setFlag(ReflectionFlag.Abstract,  !!(modifiers & ts.ModifierFlags.Abstract));
+    reflection.setFlag(ReflectionFlag.Readonly,  !!(modifiers & ts.ModifierFlags.Readonly));
 
     if (
         context.isInherit &&

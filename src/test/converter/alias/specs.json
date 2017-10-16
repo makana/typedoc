@@ -19,7 +19,9 @@
           "name": "TCompareFunction",
           "kind": 4194304,
           "kindString": "Type alias",
-          "flags": {},
+          "flags": {
+            "isExported": true
+          },
           "comment": {
             "shortText": "A type that describes a compare function, e.g. for array.sort()."
           },
@@ -46,7 +48,9 @@
               "name": "__type",
               "kind": 65536,
               "kindString": "Type literal",
-              "flags": {},
+              "flags": {
+                "isExported": true
+              },
               "signatures": [
                 {
                   "id": 5,
@@ -99,7 +103,9 @@
           "name": "TId",
           "kind": 4194304,
           "kindString": "Type alias",
-          "flags": {},
+          "flags": {
+            "isExported": true
+          },
           "comment": {
             "shortText": "A type for IDs."
           },

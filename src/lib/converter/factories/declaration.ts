@@ -1,6 +1,6 @@
 import * as ts from 'typescript';
 
-import { ReflectionKind, ReflectionFlag, ContainerReflection, DeclarationReflection, ProjectReflection } from '../../models/index';
+import { ReflectionKind, ReflectionFlag, ContainerReflection, DeclarationReflection } from '../../models/index';
 import { Context } from '../context';
 import { Converter, SourceFileMode } from '../converter';
 import { createReferenceType } from './reference';
@@ -77,9 +77,10 @@ export function createDeclaration(context: Context, node: ts.Node, kind: Reflect
         isExported = container.flags.isExported;
     }
 
-    if (kind === ReflectionKind.ExternalModule || context.isDeclaration || !!(modifiers & ts.ModifierFlags.Ambient)
-        || (container instanceof ProjectReflection && !context.isDeclaration && context.converter.mode === SourceFileMode.File)) {
-        isExported = true; // Always mark external modules or declared types as exported
+    if (kind === ReflectionKind.ExternalModule || (!context.isDeclaration && context.converter.mode === SourceFileMode.File)) {
+        isExported = container.isProject(); // Always mark external modules as exported
+    } else if (context.isDeclaration || !!(modifiers & ts.ModifierFlags.Ambient)) {
+        isExported = true; // Always mark declared types as exported
     } else if (node.parent && node.parent.kind === ts.SyntaxKind.VariableDeclarationList) {
         const parentModifiers = ts.getCombinedModifierFlags(node.parent.parent);
         isExported = isExported || !!(parentModifiers & ts.ModifierFlags.Export);

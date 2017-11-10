@@ -77,9 +77,10 @@ export function createDeclaration(context: Context, node: ts.Node, kind: Reflect
         isExported = container.flags.isExported;
     }
 
-    if (kind === ReflectionKind.ExternalModule || (!context.isDeclaration && context.converter.mode === SourceFileMode.File)) {
+    if (kind === ReflectionKind.ExternalModule) {
         isExported = container.isProject(); // Always mark external modules as exported
-    } else if (context.isDeclaration || !!(modifiers & ts.ModifierFlags.Ambient)) {
+    } else if ((container.isProject() && !context.isDeclaration && context.converter.mode === SourceFileMode.File)
+        || context.isDeclaration || !!(modifiers & ts.ModifierFlags.Ambient)) {
         isExported = true; // Always mark declared types as exported
     } else if (node.parent && node.parent.kind === ts.SyntaxKind.VariableDeclarationList) {
         const parentModifiers = ts.getCombinedModifierFlags(node.parent.parent);
